@@ -33,7 +33,7 @@ export class ItemsListComponent implements OnInit {
 
   getRate(): void {
     this.service.getConversion().subscribe(
-      data => { this.conversionRate = data.rates.USD }
+     // data => { this.conversionRate = data.rates.USD }
     );
     this.items$.pipe(
       map(items => (items.forEach(i => ({ ...i, priceUsd: (i.priceIls * this.conversionRate) })))));
