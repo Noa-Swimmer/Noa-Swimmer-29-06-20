@@ -1,0 +1,8 @@
+<div class="panel-body">
+  <ul class="list-group">
+      <li class=" text-center list-group-item" *ngFor="let store of stores$ | async">
+          <div ><u>{{store.store}}</u></div>   
+          <div>{{count$}}</div> 
+      </li>    
+  </ul>
+</div>

@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <ng-container *ngFor='let item of receivedItems$ | async'>
+            <div class="col-sm-6 col-md-4 col-lg-3 mt-4" *ngIf='item.received'>
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">{{item.itemName}}</h4>
+                        <div class="card-text">{{item.store}}</div>
+                        <div class="card-text">{{item.priceIls}} &#8362;</div>
+                        <div class="card-text">{{item.priceUsd}} $</div>
+                    </div>
+                    <div class="card-footer">
+                        <span>{{item.deliveryDate | date: 'dd/MM/yyyy'}}</span>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

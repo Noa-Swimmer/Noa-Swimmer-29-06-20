@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <ng-container *ngFor='let item of items$ | async'>
+      <app-item class="col-sm-6 col-md-4 col-lg-3 mt-4"  *ngIf='!item.received'
+        (received)="receivedClick($event)" [item]="item">
+      </app-item>
+    </ng-container>
+  </div>
+</div>
+<footer class="fixed-bottom">
+  <a [routerLink]="['/recievedItems']" routerLinkActive="router-link-active">
+    <h3>See all recieved items</h3>
+  </a>
+</footer>
