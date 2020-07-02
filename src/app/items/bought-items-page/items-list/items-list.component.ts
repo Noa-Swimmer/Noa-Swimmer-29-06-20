@@ -26,7 +26,8 @@ export class ItemsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.items$ = this.itemsQuery.selectAll();
+    this.items$ = this.itemsQuery.selectAll().pipe(map(
+      res=> res.sort((item1,item2)=>{  return (item1.deliveryDate > item2.deliveryDate? 1 :-1)} )));;
     const source = interval(10000);
     this.subscription = source.subscribe(val => this.getRate());
   }
@@ -35,8 +36,8 @@ export class ItemsListComponent implements OnInit {
     this.service.getConversion().subscribe(
      // data => { this.conversionRate = data.rates.USD }
     );
-    this.items$.pipe(
-      map(items => (items.forEach(i => ({ ...i, priceUsd: (i.priceIls * this.conversionRate) })))));
+    // this.items$.pipe(
+    //   map(items => (items.forEach(i => ({ ...i, priceUsd: (i.priceIls * this.conversionRate) })))));
   }
 
   receivedClick(item: Item) {

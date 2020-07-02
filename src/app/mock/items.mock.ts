@@ -5,7 +5,7 @@ export const ItemsList = [
         store: 'Aliexpress',
         priceIls: 10,
         priceUsd: 0,
-        deliveryDate: new Date(),
+        deliveryDate: new Date('04/07/2020'),
         received: false
     },
     {

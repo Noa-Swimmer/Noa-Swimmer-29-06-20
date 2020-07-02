@@ -1,8 +1,8 @@
 <div class="panel-body">
   <ul class="list-group">
-      <li class=" text-center list-group-item" *ngFor="let store of stores$ | async">
-          <div ><u>{{store.store}}</u></div>   
-          <div>{{count$}}</div> 
+      <li class=" text-center list-group-item" *ngFor="let store of storesList | keyvalue">
+          <div ><u><h3>{{store.key}}</h3></u></div>   
+          <div>{{store.value}} orderd items</div> 
       </li>    
   </ul>
 </div>
