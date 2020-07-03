@@ -1,7 +1,7 @@
 import { ItemsStore } from './item.store';
 import { Injectable } from '@angular/core';
 import { Item } from './item.model';
-import { ItemsList } from 'src/app/mock/items.mock';
+import { ITEMS_LIST_MOCK } from 'src/app/mock/items.mock';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ import { ItemsList } from 'src/app/mock/items.mock';
 export class ItemService {
 
   constructor(private itemStore:ItemsStore) { 
-    this.itemStore.set(ItemsList)
+    this.itemStore.set(ITEMS_LIST_MOCK)
   }
 
   updateActive(item: Item) {

@@ -1,7 +1,9 @@
 <div class="container">
     <div class="row">
-        <ng-container *ngFor='let item of receivedItems$ | async'>
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+            <!-- <app-item  *ngFor='let item of items$ | async' class="col-sm-6 col-md-4 col-lg-3 mt-4" 
+             [item]="item">
+          </app-item> -->
+            <div  *ngFor='let item of receivedItems$ | async' class="col-sm-6 col-md-4 col-lg-3 mt-4">
                 <div class="card">
                     <div class="card-block">
                         <h4 class="card-title">{{item.itemName}}</h4>
@@ -14,6 +16,5 @@
                     </div>
                 </div>
             </div>
-        </ng-container>
     </div>
 </div>

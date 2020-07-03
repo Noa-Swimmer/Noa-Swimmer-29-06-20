@@ -1,4 +1,4 @@
-export const ItemsList = [
+export const ITEMS_LIST_MOCK = [
     {
         id: 0,
         itemName: 'bla bla',
