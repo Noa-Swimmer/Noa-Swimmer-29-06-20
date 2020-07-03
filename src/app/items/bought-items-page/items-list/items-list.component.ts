@@ -13,31 +13,40 @@ import { map } from 'rxjs/operators'
   providers: [CurrencyService]
 })
 export class ItemsListComponent implements OnInit {
-  
+
   items$: Observable<Item[]>;
 
   subscription: Subscription;
   conversionRate: number;
 
-  constructor(private itemsQuery: ItemsQuery, 
-    private itemsService: ItemService, 
+  constructor(private itemsQuery: ItemsQuery,
+    private itemsService: ItemService,
     private service: CurrencyService) {
 
   }
 
   ngOnInit() {
-    this.items$ = this.itemsQuery.selectAll().pipe(map(
-      res=> res.sort((item1,item2)=>{  return (item1.deliveryDate > item2.deliveryDate? 1 :-1)} )));;
+    this.items$ = this.itemsQuery.selectAll().pipe(
+      map(itmes => itmes.filter(item=> {return !item.received;})),
+      map(res => res.sort((item1, item2) => 
+      { return (item1.deliveryDate > item2.deliveryDate ? 1 : -1) }))    
+      );
     const source = interval(10000);
     this.subscription = source.subscribe(val => this.getRate());
   }
 
   getRate(): void {
     this.service.getConversion().subscribe(
-     // data => { this.conversionRate = data.rates.USD }
+      data => { this.conversionRate = data.rates.USD;  
+        this.items$.pipe(
+          map(items => (items.forEach(i => {
+            let cloneItem = Object.assign({}, i);
+            cloneItem.priceUsd = cloneItem.priceIls * this.conversionRate;
+            console.log(cloneItem.priceUsd);
+          })))); }
+     
     );
-    // this.items$.pipe(
-    //   map(items => (items.forEach(i => ({ ...i, priceUsd: (i.priceIls * this.conversionRate) })))));
+   
   }
 
   receivedClick(item: Item) {
